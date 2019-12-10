@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <classPathEntry location="C:\Users\PV-1\.m2\repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+  <context id="context1">
+  	<commentGenerator>
+  		<property name="suppressTypeWarnings" value="false"/>
+  		<property name="suppressAllComments" value="true"/>
+  		<property name="suppressDate" value="true" />
+  	</commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://94.191.15.204:3306/test"
+    driverClass="com.mysql.jdbc.Driver"
+    userId="root" password="mmali159753" />
+    <javaModelGenerator targetPackage="com.voidshell.pojo" targetProject="src\main\java" />
+    <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources" />
+    <javaClientGenerator targetPackage="com.voidshell.dao" targetProject="src\main\java" type="XMLMAPPER" >
+      <property name="enableSubPackages" value="true"/>
+    </javaClientGenerator>
+
+    <table tableName="vs_department" domainObjectName="Department">
+    <columnRenamingRule searchString="^vs" replaceString=""/>
+    </table>
+      <table tableName="vs_role" domainObjectName="Role">
+          <columnRenamingRule searchString="^vs" replaceString=""/>
+      </table>
+      <table tableName="vs_user" domainObjectName="User">
+          <columnRenamingRule searchString="^vs" replaceString=""/>
+      </table>
+  </context>
+</generatorConfiguration>
