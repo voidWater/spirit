@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.voidshell.BM.musicStudio.dao.CxMapper" >
+  <resultMap id="BaseResultMap" type="com.voidshell.BM.musicStudio.pojo.Cx" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="child_title" property="childTitle" jdbcType="VARCHAR" />
+    <result column="dateStr" property="datestr" jdbcType="VARCHAR" />
+    <result column="pics" property="pics" jdbcType="VARCHAR" />
+    <result column="des" property="des" jdbcType="VARCHAR" />
+    <result column="expl" property="expl" jdbcType="VARCHAR" />
+    <result column="tip" property="tip" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, title, child_title, dateStr, pics, des, expl, tip, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.voidshell.BM.musicStudio.pojo.CxExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vt_cx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vt_cx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vt_cx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.voidshell.BM.musicStudio.pojo.CxExample" >
+    delete from vt_cx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.voidshell.BM.musicStudio.pojo.Cx" >
+    insert into vt_cx (id, name, title, 
+      child_title, dateStr, pics, 
+      des, expl, tip, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{childTitle,jdbcType=VARCHAR}, #{datestr,jdbcType=VARCHAR}, #{pics,jdbcType=VARCHAR}, 
+      #{des,jdbcType=VARCHAR}, #{expl,jdbcType=VARCHAR}, #{tip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.voidshell.BM.musicStudio.pojo.Cx" >
+    insert into vt_cx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="childTitle != null" >
+        child_title,
+      </if>
+      <if test="datestr != null" >
+        dateStr,
+      </if>
+      <if test="pics != null" >
+        pics,
+      </if>
+      <if test="des != null" >
+        des,
+      </if>
+      <if test="expl != null" >
+        expl,
+      </if>
+      <if test="tip != null" >
+        tip,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="childTitle != null" >
+        #{childTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="datestr != null" >
+        #{datestr,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null" >
+        #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="expl != null" >
+        #{expl,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.voidshell.BM.musicStudio.pojo.CxExample" resultType="java.lang.Integer" >
+    select count(*) from vt_cx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vt_cx
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.childTitle != null" >
+        child_title = #{record.childTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.datestr != null" >
+        dateStr = #{record.datestr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pics != null" >
+        pics = #{record.pics,jdbcType=VARCHAR},
+      </if>
+      <if test="record.des != null" >
+        des = #{record.des,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expl != null" >
+        expl = #{record.expl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tip != null" >
+        tip = #{record.tip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vt_cx
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      child_title = #{record.childTitle,jdbcType=VARCHAR},
+      dateStr = #{record.datestr,jdbcType=VARCHAR},
+      pics = #{record.pics,jdbcType=VARCHAR},
+      des = #{record.des,jdbcType=VARCHAR},
+      expl = #{record.expl,jdbcType=VARCHAR},
+      tip = #{record.tip,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.voidshell.BM.musicStudio.pojo.Cx" >
+    update vt_cx
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="childTitle != null" >
+        child_title = #{childTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="datestr != null" >
+        dateStr = #{datestr,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null" >
+        pics = #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="des != null" >
+        des = #{des,jdbcType=VARCHAR},
+      </if>
+      <if test="expl != null" >
+        expl = #{expl,jdbcType=VARCHAR},
+      </if>
+      <if test="tip != null" >
+        tip = #{tip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.voidshell.BM.musicStudio.pojo.Cx" >
+    update vt_cx
+    set name = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      child_title = #{childTitle,jdbcType=VARCHAR},
+      dateStr = #{datestr,jdbcType=VARCHAR},
+      pics = #{pics,jdbcType=VARCHAR},
+      des = #{des,jdbcType=VARCHAR},
+      expl = #{expl,jdbcType=VARCHAR},
+      tip = #{tip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,12 +1,15 @@
 server:
-  port: 8082
+  port: 8088
 spring:
+    aop:
+      proxy-target-class: true
+#    resources:
+#      static-locations: file:
     datasource:
-        url: jdbc:mysql://94.191.15.204:3306/test
+        url: jdbc:mysql://94.191.15.204:3306/fullmusic
         driverClassName: com.mysql.jdbc.Driver
         username: root
         password: mmali159753
-
         platform: mysql
         type: com.alibaba.druid.pool.DruidDataSource
         # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -34,4 +37,8 @@ spring:
         # 合并多个DruidDataSource的监控数据
         #useGlobalDataSourceStat: true
 
-
+logging:
+  level:
+    com:
+      voidshell:
+          dao: debug

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.voidshell.dao.userManage.VsUmUserMapper" >
+  <resultMap id="BaseResultMap" type="com.voidshell.pojo.userManage.VsUmUser" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="phone2" property="phone2" jdbcType="VARCHAR" />
+    <result column="phone3" property="phone3" jdbcType="VARCHAR" />
+    <result column="addr" property="addr" jdbcType="VARCHAR" />
+    <result column="depart_id" property="departId" jdbcType="VARCHAR" />
+    <result column="role_rel" property="roleRel" jdbcType="VARCHAR" />
+    <result column="auth_rel" property="authRel" jdbcType="VARCHAR" />
+    <result column="valid" property="valid" jdbcType="INTEGER" />
+    <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />
+    <result column="createUser" property="createuser" jdbcType="VARCHAR" />
+    <result column="updateDate" property="updatedate" jdbcType="TIMESTAMP" />
+    <result column="updateUser" property="updateuser" jdbcType="VARCHAR" />
+    <result column="wx_openId" property="wxOpenid" jdbcType="VARCHAR" />
+    <result column="wx_unid" property="wxUnid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, code, name, password, sex, age, phone, phone2, phone3, addr, depart_id, role_rel, 
+    auth_rel, valid, createDate, createUser, updateDate, updateUser, wx_openId, wx_unid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.voidshell.pojo.userManage.VsUmUserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from vs_um_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from vs_um_user
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from vs_um_user
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.voidshell.pojo.userManage.VsUmUserExample" >
+    delete from vs_um_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.voidshell.pojo.userManage.VsUmUser" >
+    insert into vs_um_user (id, code, name, 
+      password, sex, age, 
+      phone, phone2, phone3, 
+      addr, depart_id, role_rel, 
+      auth_rel, valid, createDate, 
+      createUser, updateDate, updateUser, 
+      wx_openId, wx_unid)
+    values (#{id,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, 
+      #{phone,jdbcType=VARCHAR}, #{phone2,jdbcType=VARCHAR}, #{phone3,jdbcType=VARCHAR}, 
+      #{addr,jdbcType=VARCHAR}, #{departId,jdbcType=VARCHAR}, #{roleRel,jdbcType=VARCHAR}, 
+      #{authRel,jdbcType=VARCHAR}, #{valid,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createuser,jdbcType=VARCHAR}, #{updatedate,jdbcType=TIMESTAMP}, #{updateuser,jdbcType=VARCHAR}, 
+      #{wxOpenid,jdbcType=VARCHAR}, #{wxUnid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.voidshell.pojo.userManage.VsUmUser" >
+    insert into vs_um_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="phone2 != null" >
+        phone2,
+      </if>
+      <if test="phone3 != null" >
+        phone3,
+      </if>
+      <if test="addr != null" >
+        addr,
+      </if>
+      <if test="departId != null" >
+        depart_id,
+      </if>
+      <if test="roleRel != null" >
+        role_rel,
+      </if>
+      <if test="authRel != null" >
+        auth_rel,
+      </if>
+      <if test="valid != null" >
+        valid,
+      </if>
+      <if test="createdate != null" >
+        createDate,
+      </if>
+      <if test="createuser != null" >
+        createUser,
+      </if>
+      <if test="updatedate != null" >
+        updateDate,
+      </if>
+      <if test="updateuser != null" >
+        updateUser,
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openId,
+      </if>
+      <if test="wxUnid != null" >
+        wx_unid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null" >
+        #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="departId != null" >
+        #{departId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleRel != null" >
+        #{roleRel,jdbcType=VARCHAR},
+      </if>
+      <if test="authRel != null" >
+        #{authRel,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnid != null" >
+        #{wxUnid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.voidshell.pojo.userManage.VsUmUserExample" resultType="java.lang.Integer" >
+    select count(*) from vs_um_user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update vs_um_user
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null" >
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.age != null" >
+        age = #{record.age,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone2 != null" >
+        phone2 = #{record.phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone3 != null" >
+        phone3 = #{record.phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addr != null" >
+        addr = #{record.addr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.departId != null" >
+        depart_id = #{record.departId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.roleRel != null" >
+        role_rel = #{record.roleRel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authRel != null" >
+        auth_rel = #{record.authRel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.valid != null" >
+        valid = #{record.valid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdate != null" >
+        createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createuser != null" >
+        createUser = #{record.createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updatedate != null" >
+        updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateuser != null" >
+        updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxOpenid != null" >
+        wx_openId = #{record.wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wxUnid != null" >
+        wx_unid = #{record.wxUnid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update vs_um_user
+    set id = #{record.id,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      age = #{record.age,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      phone2 = #{record.phone2,jdbcType=VARCHAR},
+      phone3 = #{record.phone3,jdbcType=VARCHAR},
+      addr = #{record.addr,jdbcType=VARCHAR},
+      depart_id = #{record.departId,jdbcType=VARCHAR},
+      role_rel = #{record.roleRel,jdbcType=VARCHAR},
+      auth_rel = #{record.authRel,jdbcType=VARCHAR},
+      valid = #{record.valid,jdbcType=INTEGER},
+      createDate = #{record.createdate,jdbcType=TIMESTAMP},
+      createUser = #{record.createuser,jdbcType=VARCHAR},
+      updateDate = #{record.updatedate,jdbcType=TIMESTAMP},
+      updateUser = #{record.updateuser,jdbcType=VARCHAR},
+      wx_openId = #{record.wxOpenid,jdbcType=VARCHAR},
+      wx_unid = #{record.wxUnid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.voidshell.pojo.userManage.VsUmUser" >
+    update vs_um_user
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phone2 != null" >
+        phone2 = #{phone2,jdbcType=VARCHAR},
+      </if>
+      <if test="phone3 != null" >
+        phone3 = #{phone3,jdbcType=VARCHAR},
+      </if>
+      <if test="addr != null" >
+        addr = #{addr,jdbcType=VARCHAR},
+      </if>
+      <if test="departId != null" >
+        depart_id = #{departId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleRel != null" >
+        role_rel = #{roleRel,jdbcType=VARCHAR},
+      </if>
+      <if test="authRel != null" >
+        auth_rel = #{authRel,jdbcType=VARCHAR},
+      </if>
+      <if test="valid != null" >
+        valid = #{valid,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null" >
+        createDate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuser != null" >
+        createUser = #{createuser,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedate != null" >
+        updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateuser != null" >
+        updateUser = #{updateuser,jdbcType=VARCHAR},
+      </if>
+      <if test="wxOpenid != null" >
+        wx_openId = #{wxOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="wxUnid != null" >
+        wx_unid = #{wxUnid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.voidshell.pojo.userManage.VsUmUser" >
+    update vs_um_user
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      phone2 = #{phone2,jdbcType=VARCHAR},
+      phone3 = #{phone3,jdbcType=VARCHAR},
+      addr = #{addr,jdbcType=VARCHAR},
+      depart_id = #{departId,jdbcType=VARCHAR},
+      role_rel = #{roleRel,jdbcType=VARCHAR},
+      auth_rel = #{authRel,jdbcType=VARCHAR},
+      valid = #{valid,jdbcType=INTEGER},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      createUser = #{createuser,jdbcType=VARCHAR},
+      updateDate = #{updatedate,jdbcType=TIMESTAMP},
+      updateUser = #{updateuser,jdbcType=VARCHAR},
+      wx_openId = #{wxOpenid,jdbcType=VARCHAR},
+      wx_unid = #{wxUnid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.voidshell.BM.lotte.dao.WxLuckParticMapper" >
+  <resultMap id="BaseResultMap" type="com.voidshell.BM.lotte.pojo.WxLuckPartic" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="lotteId" property="lotteid" jdbcType="VARCHAR" />
+    <result column="lotteItemId" property="lotteitemid" jdbcType="VARCHAR" />
+    <result column="particId" property="particid" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="itemName" property="itemname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, lotteId, lotteItemId, particId, name, itemName
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.voidshell.BM.lotte.pojo.WxLuckParticExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wx_luck_partic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wx_luck_partic
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wx_luck_partic
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.voidshell.BM.lotte.pojo.WxLuckParticExample" >
+    delete from wx_luck_partic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.voidshell.BM.lotte.pojo.WxLuckPartic" >
+    insert into wx_luck_partic (id, lotteId, lotteItemId, 
+      particId, name, itemName
+      )
+    values (#{id,jdbcType=VARCHAR}, #{lotteid,jdbcType=VARCHAR}, #{lotteitemid,jdbcType=VARCHAR}, 
+      #{particid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{itemname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.voidshell.BM.lotte.pojo.WxLuckPartic" >
+    insert into wx_luck_partic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lotteid != null" >
+        lotteId,
+      </if>
+      <if test="lotteitemid != null" >
+        lotteItemId,
+      </if>
+      <if test="particid != null" >
+        particId,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="itemname != null" >
+        itemName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteid != null" >
+        #{lotteid,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteitemid != null" >
+        #{lotteitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="particid != null" >
+        #{particid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null" >
+        #{itemname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.voidshell.BM.lotte.pojo.WxLuckParticExample" resultType="java.lang.Integer" >
+    select count(*) from wx_luck_partic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wx_luck_partic
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lotteid != null" >
+        lotteId = #{record.lotteid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lotteitemid != null" >
+        lotteItemId = #{record.lotteitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.particid != null" >
+        particId = #{record.particid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.itemname != null" >
+        itemName = #{record.itemname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wx_luck_partic
+    set id = #{record.id,jdbcType=VARCHAR},
+      lotteId = #{record.lotteid,jdbcType=VARCHAR},
+      lotteItemId = #{record.lotteitemid,jdbcType=VARCHAR},
+      particId = #{record.particid,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      itemName = #{record.itemname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.voidshell.BM.lotte.pojo.WxLuckPartic" >
+    update wx_luck_partic
+    <set >
+      <if test="lotteid != null" >
+        lotteId = #{lotteid,jdbcType=VARCHAR},
+      </if>
+      <if test="lotteitemid != null" >
+        lotteItemId = #{lotteitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="particid != null" >
+        particId = #{particid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="itemname != null" >
+        itemName = #{itemname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.voidshell.BM.lotte.pojo.WxLuckPartic" >
+    update wx_luck_partic
+    set lotteId = #{lotteid,jdbcType=VARCHAR},
+      lotteItemId = #{lotteitemid,jdbcType=VARCHAR},
+      particId = #{particid,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      itemName = #{itemname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -18,7 +18,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.voidshell.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.voidshell"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -28,4 +28,5 @@ public class SwaggerConfig {
                 .title("API文档")
                 .build();
     }
+
 }

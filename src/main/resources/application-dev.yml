@@ -1,14 +1,21 @@
 server:
-  port: 8088
+  port: 8089
 spring:
     aop:
       proxy-target-class: true
+#    resources:
+#      static-locations: file:
+    thymeleaf:
+      mode: HTML
+      encoding: UTF-8
+      servlet:
+        content-type: text/html; charset=utf-8
+      cache: false
     datasource:
-        url: jdbc:mysql://94.191.15.204:3306/test
+        url: jdbc:mysql://111.230.147.198:3306/rorschach
         driverClassName: com.mysql.jdbc.Driver
         username: root
         password: mmali159753
-
         platform: mysql
         type: com.alibaba.druid.pool.DruidDataSource
         # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -35,8 +42,6 @@ spring:
         connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
         # 合并多个DruidDataSource的监控数据
         #useGlobalDataSourceStat: true
-
-
 
 logging:
   level:

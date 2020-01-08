@@ -1,6 +1,6 @@
 package com.voidshell.config.shiro;
 
-import com.voidshell.service.userManage.UserManageService;
+
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -12,8 +12,10 @@ import java.util.Set;
 
 public class CustomRealm extends AuthorizingRealm {
 
+
+
     @Autowired
-    private UserManageService userManageService;
+    ShiroSampleDao shiroSampleDao;
     /**
      * 授权
      * @param principals
@@ -23,10 +25,10 @@ public class CustomRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String username = (String) super.getAvailablePrincipal(principals);
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        Set<String> roles = userManageService.getRolesByUsername(username);
+        Set<String> roles = shiroSampleDao.getRolesByUsername(username);
         authorizationInfo.setRoles(roles);
         roles.forEach(role -> {
-            Set<String> permissions = this.userManageService.getPermissionsByRole(role);
+            Set<String> permissions = this.shiroSampleDao.getPermissionsByRole(role);
             authorizationInfo.addStringPermissions(permissions);
         });
         return authorizationInfo;
@@ -42,7 +44,7 @@ public class CustomRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         String username = token.getUsername();
-        String password = this.userManageService.getPasswordByUsername(username);
+        String password = this.shiroSampleDao.getPasswordByUsername(username);
         return new SimpleAuthenticationInfo(username, password, getName());
     }
 }

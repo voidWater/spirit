@@ -21,6 +21,9 @@ public class ShiroConfig {
         return securityManager;
     }
 
+
+
+
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
