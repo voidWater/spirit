@@ -15,7 +15,7 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-.mvn
+/.mvn
 target
 *.iws
 *.iml
