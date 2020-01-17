@@ -21,25 +21,26 @@ import java.util.concurrent.CopyOnWriteArraySet;
 @ServerEndpoint(value = "/websocket")
 @Component
 public class MyWebSocket {
+
+
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
 
     //concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。
-    private static Map<String,CopyOnWriteArraySet> group = new Hashtable<>();
-    //private static CopyOnWriteArraySet<MyWebSocket> webSocketSet = new CopyOnWriteArraySet<MyWebSocket>();
+    //private static Map<String,CopyOnWriteArraySet> group = new HashMap<>();
+    private static CopyOnWriteArraySet<MyWebSocket> webSocketSet = new CopyOnWriteArraySet<MyWebSocket>();
 
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
     private Session session;
 
     private String openId = "";
+    private String lotteId = null;
 
     /**
      * 连接建立成功调用的方法*/
     @OnOpen
     public void onOpen(Session session) {
-        //System.out.println(code);
         this.session = session;
-        //webSocketSet.add(this);     //加入set中
         addOnlineCount();           //在线数加1
         System.out.println("有新连接加入！当前在线人数为" + getOnlineCount());
         try {
@@ -54,7 +55,7 @@ public class MyWebSocket {
      */
     @OnClose
     public void onClose() {
-        //webSocketSet.remove(this);  //从set中删除
+        webSocketSet.remove(this);  //从set中删除
         subOnlineCount();           //在线数减1
         System.out.println("有一连接关闭！当前在线人数为" + getOnlineCount());
     }
@@ -65,31 +66,30 @@ public class MyWebSocket {
      * @param message 客户端发送过来的消息*/
     @OnMessage
     public void onMessage(String message, Session session) {
-        System.out.println(message);
         JSONObject data = JSON.parseObject(message);
-        //System.out.println(jis.get("code"));
-        if(data.get("code")=="start"){
-            if(group.get(data.get("lotteId"))==null){
-                CopyOnWriteArraySet<MyWebSocket> webSocketSet = new CopyOnWriteArraySet<MyWebSocket>();
+        if(data.get("code").equals("start")){
+            if(this.lotteId==null){
+                this.lotteId = data.get("lotteId").toString();
                 webSocketSet.add(this);
-                group.put(String.valueOf(data.get("lotteId")),webSocketSet);
-            }else{
-                group.get(String.valueOf(data.get("lotteId"))).add(this);
             }
-        }else if(data.get("code")=="open"){
-            CopyOnWriteArraySet<MyWebSocket> webSocketSet = group.get(String.valueOf(data.get("lotteId")));
+        }else if(data.get("code").equals("open")){
             for (MyWebSocket item : webSocketSet) {
                 try {
-                    item.sendMessage("open");
+                    System.out.println(this.lotteId);
+                    if(this.lotteId.equals(data.get("lotteId").toString())){
+                        item.sendMessage("open");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }else if(data.get("code")=="openItem"){
-            CopyOnWriteArraySet<MyWebSocket> webSocketSet = group.get(String.valueOf(data.get("lotteId")));
+        }else if(data.get("code").equals("openItem")){
+
             for (MyWebSocket item : webSocketSet) {
                 try {
-                    item.sendMessage("openItem");
+                    if(this.lotteId.equals(data.get("code").toString())){
+                        item.sendMessage("openItem");
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -97,13 +97,7 @@ public class MyWebSocket {
         }
 
 //        //群发消息
-//        for (MyWebSocket item : webSocketSet) {
-//            try {
-//                item.sendMessage(message);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
+
     }
 
     /**

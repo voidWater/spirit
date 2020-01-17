@@ -5,6 +5,7 @@ import com.voidshell.BM.lotte.dao.WxLotteMapper;
 import com.voidshell.BM.lotte.dao.WxLuckParticMapper;
 import com.voidshell.BM.lotte.dao.WxParticipantMapper;
 import com.voidshell.BM.lotte.pojo.*;
+import com.voidshell.utils.CharEncode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,7 +70,11 @@ public class LotteService {
     public List<WxParticipant> getP(String id) {
         WxParticipantExample wxParticipantExample = new WxParticipantExample();
         wxParticipantExample.createCriteria().andLotteidEqualTo(id);
-        return wxParticipantMapper.selectByExample(wxParticipantExample);
+        List<WxParticipant> list= wxParticipantMapper.selectByExample(wxParticipantExample);
+        list.forEach(l->{
+            l.setNikname(CharEncode.base64Decode(l.getNikname()));
+        });
+        return list;
     }
     /**
      * 修改抽奖
@@ -138,7 +143,7 @@ public class LotteService {
             wxParticipant.setId(UUID.randomUUID().toString());
             wxParticipant.setOpenid(openId);
             wxParticipant.setLotteid(list.get(0).getId());
-            wxParticipant.setNikname(nickName);
+            wxParticipant.setNikname(CharEncode.base64Encode(nickName));
             wxParticipant.setAvaurl(avaUrl);
             if(wxParticipantMapper.insert(wxParticipant)==1){
                 return list.get(0).getId();
@@ -187,7 +192,7 @@ public class LotteService {
                     wxLuckPartic.setLotteid(wxLotte.getId());
                     wxLuckPartic.setItemname(wxLotteItem.getName());
                     wxLuckPartic.setParticid(wxParticipant.getId());
-                    wxLuckPartic.setName(wxLuckPartic.getName());
+                    wxLuckPartic.setName(wxParticipant.getNikname());
                     wxLuckPartic.setLotteitemid(wxLotteItem.getId());
                     wxLuckParticMapper.insert(wxLuckPartic);
 //                    wxParticipant.setLotteitemid(wxLotteItem.getId()+","+"&,"+wxParticipant.getLotteitemid());
@@ -225,7 +230,10 @@ public class LotteService {
         List<WxParticipant> list = wxParticipantMapper.selectByExample(wxParticipantExample);
         List<WxLotte> result = new ArrayList<>();
         list.forEach(l->{
-            result.add(wxLotteMapper.selectByPrimaryKey(l.getLotteid()));
+            WxLotte wxLotte = wxLotteMapper.selectByPrimaryKey(l.getLotteid());
+            if(wxLotte!=null){
+                result.add(wxLotte);
+            }
         });
         return result;
     }
@@ -259,7 +267,9 @@ public class LotteService {
         List<WxLuckPartic>  lList= wxLuckParticMapper.selectByExample(wxLuckParticExample);
         List<WxParticipant> result = new ArrayList<>();
         lList.forEach(l->{
-            result.add(wxParticipantMapper.selectByPrimaryKey(l.getParticid()));
+            WxParticipant wp= wxParticipantMapper.selectByPrimaryKey(l.getParticid());
+            wp.setNikname(CharEncode.base64Decode(wp.getNikname()));
+            result.add(wp);
         });
         return result;
     }

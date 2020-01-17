@@ -1,5 +1,6 @@
 package com.voidshell.controller.userManage;
 
+import com.voidshell.common.AntResult;
 import com.voidshell.common.ResponseResult;
 import com.voidshell.pojo.UserBO;
 import io.swagger.annotations.Api;
@@ -22,6 +23,17 @@ import java.util.Date;
 @RequestMapping("/index")
 @Api(tags="登录管理")
 public class LoginController {
+
+    @PostMapping("/antLogin")
+    public AntResult AntLogin(String username,String  password){
+        System.out.println(username);
+        System.out.println(password);
+        AntResult ar = new AntResult();
+        ar.setCode(10);
+        ar.setMessage("ok");
+        ar.setData(null);
+        return ar;
+    }
 
 
     @ApiOperation(value="登录", notes="用户登录")

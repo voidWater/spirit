@@ -3,8 +3,10 @@ package com.voidshell.dao.userManage;
 import com.voidshell.pojo.userManage.VsUmPermission;
 import com.voidshell.pojo.userManage.VsUmPermissionExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface VsUmPermissionMapper {
     int countByExample(VsUmPermissionExample example);
 

@@ -8,7 +8,10 @@ import java.util.Set;
 @Repository
 public class ShiroSampleDao {
 
+
     public Set<String> getRolesByUsername(String username) {
+        final double d = Math.random();
+        final int i = (int)(d*100);
         Set<String> roles = new HashSet<>();
         switch (username) {
             case "zhangsan":

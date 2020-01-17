@@ -3,8 +3,10 @@ package com.voidshell.dao.userManage;
 import com.voidshell.pojo.userManage.VsUmUr;
 import com.voidshell.pojo.userManage.VsUmUrExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface VsUmUrMapper {
     int countByExample(VsUmUrExample example);
 
