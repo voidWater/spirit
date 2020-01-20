@@ -1,10 +1,15 @@
 package com.voidshell.controller.userManage;
 
-import com.voidshell.common.AntResult;
+import com.sun.deploy.net.HttpResponse;
+import com.voidshell.pojo.ant.AntPermissions;
+import com.voidshell.pojo.ant.AntResult;
 import com.voidshell.common.ResponseResult;
 import com.voidshell.pojo.UserBO;
+import com.voidshell.pojo.ant.AntRole;
+import com.voidshell.pojo.ant.AntUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -16,28 +21,44 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-import java.util.Date;
+import java.util.*;
 
 @RestController
-@RequestMapping("/index")
+@RequestMapping("/auth2")
 @Api(tags="登录管理")
 public class LoginController {
 
-    @PostMapping("/antLogin")
-    public AntResult AntLogin(String username,String  password){
-        System.out.println(username);
-        System.out.println(password);
-        AntResult ar = new AntResult();
-        ar.setCode(10);
-        ar.setMessage("ok");
-        ar.setData(null);
-        return ar;
+    @PostMapping("/login2")
+    public Map<String,Object> AntLogin(String username, String  password ){
+        Map<String ,Object> rm = new HashMap<>();
+        rm.put("id",UUID.randomUUID().toString());
+        rm.put("name","123");
+        rm.put("password","");
+        rm.put("avatar","https://gw.alipayobjects.com/zos/rmsportal/jZUIxmJycoymBprLOUbT.png");
+        rm.put("status",1);
+        rm.put("telephone","");
+        rm.put("lastLoginIp","27.154.74.117");
+        rm.put("lastLoginTime","1534837621348");
+        rm.put("creatorId","admin");
+        rm.put("createTime","1497160610259");
+        rm.put("deleted",0);
+        rm.put("roleId","admin");
+        rm.put("lang","zh-CN");
+        rm.put("token","4291d7da9005377ec9aec4a71ea837f");
+
+        Map<String ,Object> rm3 = new HashMap<>();
+        rm3.put("message","");
+        rm3.put("code","200");
+        rm3.put("result",rm);
+        Map<String ,Object> rm2 = new HashMap<>();
+        rm2.put("Custom-Header",UUID.randomUUID().toString());
+        rm3.put("_headers",rm2);
+        return rm3;
     }
 
 
     @ApiOperation(value="登录", notes="用户登录")
-    @PostMapping("/login")
+    @PostMapping("/login12121")
     public ResponseResult login(String username, String password, HttpSession session, HttpServletRequest request){
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         token.setRememberMe(true);

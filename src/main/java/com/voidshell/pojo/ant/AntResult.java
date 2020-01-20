@@ -1,4 +1,4 @@
-package com.voidshell.common;
+package com.voidshell.pojo.ant;
 
 import lombok.Data;
 
@@ -8,5 +8,7 @@ import java.util.Map;
 public class AntResult {
     private Integer code;
     private String message;
-    private Map<String,Object> data;
+    private Long timestap;
+    private Object result;
+    private Map<String,Object> _headers;
 }
