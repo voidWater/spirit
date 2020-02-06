@@ -15,7 +15,7 @@ import java.util.*;
 public class AntUserController {
     @RequestMapping("/info")
     public AntResult AntLogin(String username, String  password, HttpSession session){
-        System.out.println(session.getAttribute("userTken"));
+        System.out.println(session.getAttribute("userToken"));
         AntResult ar = new AntResult();
         ar.setCode(200);
         ar.setMessage("ok");

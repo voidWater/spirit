@@ -5,7 +5,7 @@ import com.voidshell.BM.lotte.dao.WxLotteMapper;
 import com.voidshell.BM.lotte.dao.WxLuckParticMapper;
 import com.voidshell.BM.lotte.dao.WxParticipantMapper;
 import com.voidshell.BM.lotte.pojo.*;
-import com.voidshell.utils.CharEncode;
+import com.voidshell.common.utils.CharEncode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

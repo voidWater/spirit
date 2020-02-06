@@ -1,15 +1,10 @@
 package com.voidshell.controller.userManage;
 
-import com.sun.deploy.net.HttpResponse;
-import com.voidshell.pojo.ant.AntPermissions;
-import com.voidshell.pojo.ant.AntResult;
+
 import com.voidshell.common.ResponseResult;
 import com.voidshell.pojo.UserBO;
-import com.voidshell.pojo.ant.AntRole;
-import com.voidshell.pojo.ant.AntUser;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import jdk.nashorn.internal.runtime.arrays.ArrayIndex;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;

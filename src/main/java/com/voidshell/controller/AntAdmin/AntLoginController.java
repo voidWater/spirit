@@ -15,7 +15,6 @@ public class AntLoginController {
 
     @PostMapping("/login")
     public Map<String,Object> login(String username, String password, HttpSession session){
-        System.out.println(1);
         Map<String ,Object> resule = new HashMap<>();
         resule.put("id",UUID.randomUUID().toString());
         resule.put("name","123");
@@ -33,8 +32,6 @@ public class AntLoginController {
         resule.put("token","4291d7da9005377ec9aec4a71ea837f");
 
         session.setAttribute("userToken","4291d7da9005377ec9aec4a71ea837f");
-        System.out.println();
-
 //        Map<String ,Object> ch = new HashMap<>();
 //        ch.put("Custom-Header",UUID.randomUUID().toString());
 

@@ -1,9 +1,7 @@
-package com.voidshell.utils;
+package com.voidshell.common.utils;
 
 
 import org.apache.commons.codec.binary.Base64;
-
-import java.io.UnsupportedEncodingException;
 
 public class CharEncode {
     static Base64 base64 = new Base64();

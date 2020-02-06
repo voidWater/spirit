@@ -11,12 +11,17 @@
     <jdbcConnection connectionURL="jdbc:mysql://111.230.147.198:3306/rorschach"
     driverClass="com.mysql.jdbc.Driver"
     userId="root" password="mmali159753" />
-    <javaModelGenerator targetPackage="com.voidshell.pojo.userManage" targetProject="src\main\java" />
+    <javaModelGenerator targetPackage="com.voidshell.BM.boat.pojo" targetProject="src\main\java" />
     <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources\" />
-    <javaClientGenerator targetPackage="com.voidshell.dao.userManage" targetProject="src\main\java" type="XMLMAPPER" >
+    <javaClientGenerator targetPackage="com.voidshell.BM.boat.dao" targetProject="src\main\java" type="XMLMAPPER" >
       <property name="enableSubPackages" value="true"/>
     </javaClientGenerator>
-
+      <!--<table tableName="wx_boat" domainObjectName="">-->
+      <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <table tableName="wx_user" domainObjectName="">
+      <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
       <!--<table tableName="wx_user" domainObjectName="">-->
           <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
       <!--</table>-->
@@ -47,32 +52,32 @@
       <!--</table>-->
 
 
-      <table tableName="vs_um_area" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_depart" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_org" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_permission" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_role" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_rp" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_up" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_ur" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
-      <table tableName="vs_um_user" domainObjectName="">
-          <columnRenamingRule searchString="^ht" replaceString=""/>
-      </table>
+      <!--<table tableName="vs_um_area" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_depart" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_org" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_permission" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_role" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_rp" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_up" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_ur" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
+      <!--<table tableName="vs_um_user" domainObjectName="">-->
+          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
+      <!--</table>-->
   </context>
 </generatorConfiguration>

@@ -1,7 +1,7 @@
-package com.voidshell.BM.vote.dao;
+package com.voidshell.BM.boat.dao;
 
-import com.voidshell.BM.vote.pojo.WxUser;
-import com.voidshell.BM.vote.pojo.WxUserExample;
+import com.voidshell.BM.boat.pojo.WxUser;
+import com.voidshell.BM.boat.pojo.WxUserExample;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
