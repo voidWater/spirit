@@ -1,5 +1,6 @@
 package com.voidshell.catchError;
 
+import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,7 +15,7 @@ public class NoPermissionException {
         return "无权限";
     }
     @ResponseBody
-    @ExceptionHandler(AuthorizationException.class)
+    @ExceptionHandler(AccountException.class)
     public String AuthorizationException(Exception ex) {
         return "权限认证失败";
     }
