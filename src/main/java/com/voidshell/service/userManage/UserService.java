@@ -98,4 +98,20 @@ public class UserService {
     public VsUmUser getUser(String id){
         return vsUmUserMapper.selectByPrimaryKey(id);
     }
+
+    /**
+     * 根据用户名获取用户对象
+     * @param userName
+     * @return
+     */
+    public VsUmUser getUserByName(String userName) {
+        VsUmUserExample vsUmUserExample = new VsUmUserExample();
+        vsUmUserExample.createCriteria().andCodeEqualTo(userName);
+        List<VsUmUser> list = vsUmUserMapper.selectByExample(vsUmUserExample);
+        if(list.size()==1){
+            return list.get(0);
+        }else{
+            return null;
+        }
+    }
 }

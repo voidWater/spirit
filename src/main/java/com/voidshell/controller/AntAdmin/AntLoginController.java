@@ -23,11 +23,11 @@ public class AntLoginController {
     }
     @PostMapping("/login")
     public Map<String,Object> login(String username, String password, HttpSession session) throws Exception{
+
         Subject subject = SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌）
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         // 执行认证登陆
-
         subject.login(token);
 
 
@@ -48,15 +48,15 @@ public class AntLoginController {
         resule.put("token","4291d7da9005377ec9aec4a71ea837f");
 
         session.setAttribute("userToken","4291d7da9005377ec9aec4a71ea837f");
-//        Map<String ,Object> ch = new HashMap<>();
-//        ch.put("Custom-Header",UUID.randomUUID().toString());
+        Map<String ,Object> ch = new HashMap<>();
+        ch.put("Custom-Header",UUID.randomUUID().toString());
 
 
         Map<String ,Object> responseResult = new HashMap<>();
         responseResult.put("message","");
         responseResult.put("code","200");
         responseResult.put("result",resule);
-        //responseResult.put("_headers",ch);
+        responseResult.put("_headers",ch);
         return responseResult;
     }
 
@@ -70,10 +70,6 @@ public class AntLoginController {
         return responseResult;
     }
 
-    @RequestMapping("/getMessage")
-    public String pro(){
-        return "123";
-    }
     @RequestMapping("/403")
     public String noper(){
         return "403";

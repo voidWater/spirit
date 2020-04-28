@@ -1,5 +1,6 @@
 package com.voidshell.catchError;
 
+import com.voidshell.common.ResponseResult;
 import org.apache.shiro.authc.AccountException;
 import org.apache.shiro.authz.AuthorizationException;
 import org.apache.shiro.authz.UnauthorizedException;
@@ -16,7 +17,7 @@ public class NoPermissionException {
     }
     @ResponseBody
     @ExceptionHandler(AccountException.class)
-    public String AuthorizationException(Exception ex) {
-        return "权限认证失败";
+    public ResponseResult AuthorizationException(Exception ex) {
+        return ResponseResult.createComm(-1,"loginError","用户登录失败,"+ex.getMessage());
     }
 }

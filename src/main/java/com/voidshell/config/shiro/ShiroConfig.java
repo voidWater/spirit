@@ -27,11 +27,11 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        shiroFilterFactoryBean.setLoginUrl("/auth/login");
+        shiroFilterFactoryBean.setLoginUrl("/auth/nologin");
         shiroFilterFactoryBean.setUnauthorizedUrl("/auth/403");
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         // <!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
-//        filterChainDefinitionMap.put("/auth/**", "anon");
+        filterChainDefinitionMap.put("/auth/**", "anon");
 //        filterChainDefinitionMap.put("/login", "anon");
 //        filterChainDefinitionMap.put("/", "anon");
 //        filterChainDefinitionMap.put("/front/**", "anon");

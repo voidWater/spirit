@@ -4,11 +4,18 @@ import org.apache.commons.lang3.ArchUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.JavaVersion;
 import org.apache.commons.lang3.SystemUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class CommonsExample {
     /**
      *
-     * ArrayUtils
+     * -ArrayUtils
      * BooleanUtils
      * ClassPathUtils
      * EnumUtils
@@ -16,8 +23,8 @@ public class CommonsExample {
      * RandomUtils
      * StringUtils
      * NumberUtils
-     * DateUtils
-     * DateFormatUtils
+     * -DateUtils
+     * -DateFormatUtils
      * ClassUtils
      *
      * ArchUtils
@@ -45,11 +52,21 @@ public class CommonsExample {
      * @param args
      */
     public static void main(String[] args) {
-        //arrayDemo();
+        dateDemo();
+    }
 
-        //systemDemo();
-
-
+    private static void dateDemo() {
+        System.out.println("date一般用法");
+        System.out.println(DateUtils.addDays(new Date(),1));
+        System.out.println(DateUtils.round(new Date(),DateUtils.RANGE_MONTH_MONDAY));
+        System.out.println("format一般用法");
+        System.out.println(DateFormatUtils.format(new Date(),"yyyy-MM-dd"));
+        System.out.println(DateFormatUtils.format(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss"));
+        System.out.println(DateFormatUtils.format(Calendar.getInstance(),"yyyy-MM-dd hh:mm:ss"));
+        System.out.println("format指定地区");
+        System.out.println(DateFormatUtils.format(new Date(),"yyyy-MM-dd hh:mm:ss",TimeZone.getDefault(), Locale.GERMAN));
+        System.out.println(DateFormatUtils.format(System.currentTimeMillis(),"yyyy-MM-dd hh:mm:ss", Locale.FRANCE));
+        System.out.println(DateFormatUtils.format(Calendar.getInstance(),"yyyy-MM-dd hh:mm:ss", Locale.FRANCE));
     }
 
     private static void systemDemo() {
