@@ -8,76 +8,34 @@
   		<property name="suppressAllComments" value="true"/>
   		<property name="suppressDate" value="true" />
   	</commentGenerator>
-    <jdbcConnection connectionURL="jdbc:mysql://111.230.147.198:3306/rorschach"
-    driverClass="com.mysql.jdbc.Driver"
-    userId="root" password="mmali159753" />
-    <javaModelGenerator targetPackage="com.voidshell.BM.boat.pojo" targetProject="src\main\java" />
-    <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources\" />
-    <javaClientGenerator targetPackage="com.voidshell.BM.boat.dao" targetProject="src\main\java" type="XMLMAPPER" >
+    <jdbcConnection connectionURL="jdbc:mysql://111.230.147.198:3306/account-book"
+    driverClass="com.mysql.jdbc.Driver" userId="root" password="mmali159753" >
+      <property name="useInformationSchema" value="true"/>
+    </jdbcConnection>
+    <javaModelGenerator targetPackage="com.voidshell.BM.acBook.pojo" targetProject="src\main\java" />
+    <sqlMapGenerator targetPackage="mapper\acBook" targetProject="src\main\resources\" />
+    <javaClientGenerator targetPackage="com.voidshell.BM.acBook.dao" targetProject="src\main\java" type="XMLMAPPER" >
       <property name="enableSubPackages" value="true"/>
     </javaClientGenerator>
-      <!--<table tableName="wx_boat" domainObjectName="">-->
-      <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <table tableName="wx_user" domainObjectName="">
-      <columnRenamingRule searchString="^ht" replaceString=""/>
+
+      <table tableName="ac_wx_user" domainObjectName="User">
+        <columnRenamingRule searchString="^ht" replaceString=""/>
       </table>
-      <!--<table tableName="wx_user" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_vote" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_vote_item" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_history_vote" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_voting" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
+      <table tableName="ac_wx_bill" domainObjectName="Bill">
+          <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
+      <table tableName="ac_wx_billex" domainObjectName="BillEx">
+          <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
+      <table tableName="ac_wx_book" domainObjectName="Book">
+          <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
+      <table tableName="ac_wx_item" domainObjectName="Item">
+          <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
+      <table tableName="ac_wx_user_rele" domainObjectName="UserRele">
+          <columnRenamingRule searchString="^ht" replaceString=""/>
+      </table>
 
-      <!--<table tableName="wx_lotte" domainObjectName="">-->
-      <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_lotte_item" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_participant" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="wx_luck_partic" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-
-
-      <!--<table tableName="vs_um_area" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_depart" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_org" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_permission" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_role" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_rp" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_up" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_ur" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
-      <!--<table tableName="vs_um_user" domainObjectName="">-->
-          <!--<columnRenamingRule searchString="^ht" replaceString=""/>-->
-      <!--</table>-->
   </context>
 </generatorConfiguration>

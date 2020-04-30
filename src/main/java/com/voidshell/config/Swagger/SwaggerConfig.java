@@ -18,7 +18,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.voidshell"))
+                .apis(RequestHandlerSelectors.basePackage("com.voidshell.BM.acBook"))
                 .paths(PathSelectors.any())
                 .build();
     }
